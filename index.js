@@ -6,7 +6,7 @@
 	load = require('audio-loader');
 
 function badWord(msg) {
-	const bullshit = [
+	const bullshit = Array(
 		"idale", "doc", "core", "idal",
 		"handy", "iume2a",
 		"rose", "r0s3",
@@ -30,7 +30,7 @@ function badWord(msg) {
 		"cratère", "cratères",
 		"ennemi", "ennemie", "ennemis", "ennemies",
 		"effondrement", "effondrements"
-	], handle = fs.openSync("log.log", 'a+');
+	), handle = fs.openSync("log.log", 'a+');
 	
 	for(var i = 0; i < bullshit.length; i++) {
 		var string = msg.content.toLowerCase();
@@ -42,11 +42,36 @@ console.log('Connecting...');
 try { client.login('...'); }
 catch(e) { console.log(`Connexion Failed !\nERROR : ${e}`); }
 
+var helper = Array( // Arguments de Commandes
+	`Bot ${name.toUpperCase()}`,
+	"\n\nCommande Système",
+	"----------------",
+	"\nSyntax : !idale <arg>",
+	"\n -h\t Affiche l'aide de commande",
+	" -p\t Affiche le ping du bot",
+	` -d\t Demande à ${name.toUpperCase()} la date d'aujourd'hui`,
+	` -t\t Demande à ${name.toUpperCase()} l'heure à la miliseconde`,
+	"\n\nCommande Personnelle",
+	"--------------------",
+	"\nSyntax : !id <arg>",
+	`\n patpat\t Applique un blush à ${name.toUpperCase()}`
+), arg = '```';
+for(var i = 0; i < helper.length; i++) { arg += `${helper[i]}\n`; }
+arg += '```';
+
 client
 	.on('ready', () => { console.log(`${name.toUpperCase()} was connected to ${client.user.tag} !\n`); })
+	.on('error', err => { console.log(err); })
 	.on('message', msg => {
+		var time = new Date();
+		
 		switch(msg.content) {
-			case `!${name} -p`: msg.reply(`${client.ping}ms`); break;
+			case `!${name} -h`: msg.reply(arg); break; // Commande Système
+			case `!${name} -p`: msg.reply(`:hourglass_flowing_sand: ${client.ping}ms`); break;
+			case `!${name} -d`: msg.reply(`:date: ${time.getDay()+21}/${time.getMonth()+1}/20${time.getYear()-100}`); break;
+			case `!${name} -t`: msg.reply(`:clock: ${time.getHours()}h ${time.getMinutes()}m ${time.getSeconds()}s ${time.getMilliseconds()}ms`); break;
+			case `t!cookie <@555732032320307202>`: msg.channel.send(`Merci ${msg.author} !`); break; // Réponse Humaine
+			case `!id patpat`: msg.channel.send(`*${name.toUpperCase()} is blushing.*`); break; // Réponse Perso
 			default:
 				console.log(`\nSERVER\t: ${msg.guild.id}\nUSER\t: ${msg.author}\nMSG\t: ${msg.content}`);
 				
@@ -57,3 +82,4 @@ client
 				} break;
 		}
 	});
+
