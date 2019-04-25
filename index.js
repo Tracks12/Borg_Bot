@@ -35,7 +35,7 @@ function keyWord(msg) {
 		"cratère", "cratères",
 		"ennemi", "ennemie", "ennemis", "ennemies",
 		"effondrement", "effondrements"
-	), handle = fs.openSync("log.log", 'a+');
+	);
 	
 	for(var i = 0; i < word.length; i++) {
 		var string = msg.content.toLowerCase();
@@ -75,7 +75,7 @@ client
 			case `!${conf.name} -d`: msg.reply(`:date: ${time.getDay()+21}/${time.getMonth()+1}/20${time.getYear()-100}`); break;
 			case `!${conf.name} -t`: msg.reply(`:clock: ${time.getHours()}h ${time.getMinutes()}m ${time.getSeconds()}s ${time.getMilliseconds()}ms`); break;
 			case `t!cookie ${conf.id}`: msg.channel.send(`Merci ${msg.author} !`); break; // Réponse Humaine
-			case `!${conf.name} patpat`: msg.channel.send(`*${name.toUpperCase()} is blushing.*`); break; // Réponse Perso
+			case `!${conf.name} patpat`: msg.channel.send(`*${conf.name.toUpperCase()} is blushing.*`); break; // Réponse Perso
 			default:
 				console.log(`\nSERVER\t: ${msg.guild.id}\nUSER\t: ${msg.author}\nMSG\t: ${msg.content}`);
 				
