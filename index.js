@@ -70,10 +70,10 @@ client
 		var time = new Date();
 		
 		switch(msg.content) {
-			case `!${conf.name} -h`: msg.reply(arg); break; // Commande Système
-			case `!${conf.name} -p`: msg.reply(`:hourglass_flowing_sand: ${client.ping}ms`); break;
-			case `!${conf.name} -d`: msg.reply(`:date: ${time.getDay()+21}/${time.getMonth()+1}/20${time.getYear()-100}`); break;
-			case `!${conf.name} -t`: msg.reply(`:clock: ${time.getHours()}h ${time.getMinutes()}m ${time.getSeconds()}s ${time.getMilliseconds()}ms`); break;
+			case `!${conf.name} -h`: msg.channel.send(arg); break; // Commande Système
+			case `!${conf.name} -p`: msg.channel.send(`:hourglass_flowing_sand: ${client.ping}ms`); break;
+			case `!${conf.name} -d`: msg.channel.send(`:date: ${time.getDay()+21}/${time.getMonth()+1}/20${time.getYear()-100}`); break;
+			case `!${conf.name} -t`: msg.channel.send(`:clock: ${time.getHours()}h ${time.getMinutes()}m ${time.getSeconds()}s ${time.getMilliseconds()}ms`); break;
 			case `t!cookie ${conf.id}`: msg.channel.send(`Merci ${msg.author} !`); break; // Réponse Humaine
 			case `!${conf.name} patpat`: msg.channel.send(`*${conf.name.toUpperCase()} is blushing.*`); break; // Réponse Perso
 			default:
