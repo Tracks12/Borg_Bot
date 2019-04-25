@@ -12,7 +12,7 @@ const conf = require('./conf.json'),
 
 function keyWord(msg) {
 	const word = Array(
-		`${conf.name}`, "doc", "core", `${conf.name[0]}${conf.name[1]}${conf.name[2]}${conf.name[3]}`,
+		conf.name, "doc", "core", `${conf.name[0]}${conf.name[1]}${conf.name[2]}${conf.name[3]}`,
 		"handy", "iume2a",
 		"rose", "r0s3",
 		"borg corp", "borg", "burg",
