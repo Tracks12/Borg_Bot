@@ -1,13 +1,13 @@
 ﻿const discord = require('discord.js'),
 	fs = require('fs'),
 	client = new discord.Client(),
-	name = 'idale',
+	name = 'name',
 	play = require('audio-play'),
 	load = require('audio-loader');
 
 function badWord(msg) {
 	const bullshit = Array(
-		"idale", "doc", "core", "idal",
+		"name", "doc", "core", "idal",
 		"handy", "iume2a",
 		"rose", "r0s3",
 		"borg corp", "borg", "burg",
@@ -46,7 +46,7 @@ var helper = Array( // Arguments de Commandes
 	`Bot ${name.toUpperCase()}`,
 	"\n\nCommande Système",
 	"----------------",
-	"\nSyntax : !idale <arg>",
+	`\nSyntax : !${name} <arg>`,
 	"\n -h\t Affiche l'aide de commande",
 	" -p\t Affiche le ping du bot",
 	` -d\t Demande à ${name.toUpperCase()} la date d'aujourd'hui`,
