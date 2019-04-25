@@ -1,4 +1,10 @@
-﻿const discord = require('discord.js'),
+/**
+ * Author      : Anarchy & DOC
+ * Name        : index.js
+ * Last Update : 25/04/2019
+ */
+
+const discord = require('discord.js'),
 	fs = require('fs'),
 	client = new discord.Client(),
 	name = 'idale',
@@ -83,3 +89,6 @@ client
 		}
 	});
 
+/**
+ * END
+ */
