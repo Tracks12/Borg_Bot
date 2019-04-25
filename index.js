@@ -44,7 +44,7 @@ function keyWord(msg) {
 }
 
 console.log('Connecting...');
-try { client.login('NTU1NzMyMDMyMzIwMzA3MjAy.XLz3Dw.jQMFfxpFuk6BAoeS9WfuunbZvnk'); }
+try { client.login(conf.token); }
 catch(e) { console.log(`Connexion Failed !\nERROR : ${e}`); }
 
 var helper = Array( // Arguments de Commandes
