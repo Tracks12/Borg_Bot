@@ -7,7 +7,7 @@
 const discord = require('discord.js'),
 	fs = require('fs'),
 	client = new discord.Client(),
-	name = 'idale',
+	name = '...', // Nom du bot
 	play = require('audio-play'),
 	load = require('audio-loader');
 
