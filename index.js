@@ -7,7 +7,7 @@
 
 function badWord(msg) {
 	const bullshit = Array(
-		"name", "doc", "core", "idal",
+		`${name}`, "doc", "core", "idal",
 		"handy", "iume2a",
 		"rose", "r0s3",
 		"borg corp", "borg", "burg",
@@ -53,7 +53,7 @@ var helper = Array( // Arguments de Commandes
 	` -t\t Demande à ${name.toUpperCase()} l'heure à la miliseconde`,
 	"\n\nCommande Personnelle",
 	"--------------------",
-	"\nSyntax : !id <arg>",
+	`\nSyntax : !${name[0]}${name[1]} <arg>`,
 	`\n patpat\t Applique un blush à ${name.toUpperCase()}`
 ), arg = '```';
 for(var i = 0; i < helper.length; i++) { arg += `${helper[i]}\n`; }
@@ -71,7 +71,7 @@ client
 			case `!${name} -d`: msg.reply(`:date: ${time.getDay()+21}/${time.getMonth()+1}/20${time.getYear()-100}`); break;
 			case `!${name} -t`: msg.reply(`:clock: ${time.getHours()}h ${time.getMinutes()}m ${time.getSeconds()}s ${time.getMilliseconds()}ms`); break;
 			case `t!cookie <@555732032320307202>`: msg.channel.send(`Merci ${msg.author} !`); break; // Réponse Humaine
-			case `!id patpat`: msg.channel.send(`*${name.toUpperCase()} is blushing.*`); break; // Réponse Perso
+			case `!${name[0]}${name[1]} patpat`: msg.channel.send(`*${name.toUpperCase()} is blushing.*`); break; // Réponse Perso
 			default:
 				console.log(`\nSERVER\t: ${msg.guild.id}\nUSER\t: ${msg.author}\nMSG\t: ${msg.content}`);
 				
