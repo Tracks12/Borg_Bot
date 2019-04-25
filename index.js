@@ -7,7 +7,7 @@
 
 function badWord(msg) {
 	const bullshit = Array(
-		`${name}`, "doc", "core", "idal",
+		`${name}`, "doc", "core", `${name[0]}${name[1]}${name[2]}${name[3]}`,
 		"handy", "iume2a",
 		"rose", "r0s3",
 		"borg corp", "borg", "burg",
