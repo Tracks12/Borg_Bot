@@ -101,7 +101,7 @@ client
 			for(var i = 0; i < x[0]; i++) {
 				y = Math.floor(Math.random()*Math.floor(parseInt(x[1])+1)), result += y, z += `${y} `;
 				if(i < x[0]-1) { z += '; '; }
-			} msg.channel.send(`Liste: ${z}\nTotal: ${result}`);
+			} msg.channel.send('```'+`Liste: ${z}\nTotal: ${result}`+'```');
 		}
 		else if(msg.content === `t!cookie ${conf.id}`) { msg.channel.send(`Merci ${msg.author} !`); } // Réponse Humaine
 		else {
