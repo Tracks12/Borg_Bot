@@ -91,7 +91,7 @@ client
 				case '--help': msg.channel.send(helper); break; // Commande Système
 				case '--about': msg.channel.send(about); break;
 				case '--ping': msg.channel.send(`:hourglass_flowing_sand: ${client.ping}ms`); break;
-				case '--date': msg.channel.send(`:date: ${time.getDay()+21}/${time.getMonth()+1}/20${time.getYear()-100}`); break;
+				case '--date': msg.channel.send(`:date: ${time.toLocaleDateString()}`); break;
 				case '--time': msg.channel.send(`:clock: ${time.getHours()}h ${time.getMinutes()}m ${time.getSeconds()}s ${time.getMilliseconds()}ms`); break;
 				case 'patpat': msg.channel.send(`*${conf.name.toUpperCase()} is blushing.*`); break; // Réponse Perso
 			}
