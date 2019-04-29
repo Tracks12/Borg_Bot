@@ -1,7 +1,7 @@
 ﻿/**
  * Author      : Anarchy & DOC
  * Name        : index.js
- * Last Update : 25/04/2019
+ * Last Update : 29/04/2019
  */
 
 const conf = require('./conf.json'),
