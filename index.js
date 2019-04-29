@@ -57,7 +57,7 @@ var helper = Array( // Arguments de Commandes
 	`\n\nCommande Système\t\t[Syntax: !${conf.name} <arg>]`,
 	"----------------",
 	"\n --help\t Affiche l'aide de commande",
-	" --about\t Affiche les infos sur l'équipe et la dernière MàJ du bot"
+	" --about\t Affiche les infos sur l'équipe et la dernière MàJ du bot",
 	" --ping\t Affiche le ping du bot",
 	` --date\t Demande à ${conf.name.toUpperCase()} la date d'aujourd'hui`,
 	` --time\t Demande à ${conf.name.toUpperCase()} l'heure à la miliseconde`,
