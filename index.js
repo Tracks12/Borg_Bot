@@ -1,7 +1,7 @@
 ﻿/**
  * Author      : Anarchy & DOC
  * Name        : index.js
- * Last Update : 29/04/2019
+ * Last Update : 30/04/2019
  */
 
 const conf = require('./conf.json'),
@@ -12,7 +12,7 @@ const conf = require('./conf.json'),
       dev = {
       	0: { name: 'Anarchy', func: 'développeur' },
       	1: { name: 'DOC', func: 'testeur' },
-      	lastupt: '29/04/2019'
+      	lastupt: '30/04/2019'
       }
 
 function keyWord(msg) {
@@ -96,12 +96,12 @@ client
 				case 'patpat': msg.channel.send(`*${conf.name.toUpperCase()} is blushing.*`); break; // Réponse Perso
 			}
 		}
-		else if(arg[0] === '!rp') {
-			var x = arg[1].split('d'), y, z = '', result = 0;
+		else if(arg[0] === '!rp') { // Lancer de dé
+			var x = arg[1].toLowerCase().split('d'), y, z = '', result = 0;
 			for(var i = 0; i < x[0]; i++) {
 				y = Math.floor(Math.random()*Math.floor(parseInt(x[1])+1)), result += y, z += `${y} `;
 				if(i < x[0]-1) { z += '; '; }
-			} msg.channel.send('```'+`Liste: ${z}\n\nTotal: ${result}`+'```');
+			} msg.channel.send('```'+`Liste: ${z}\n\nMoyenne: ${result/x[0]}\n\nTotal: ${result}`+'```');
 		}
 		else if(msg.content === `t!cookie ${conf.id}`) { msg.channel.send(`Merci ${msg.author} !`); } // Réponse Humaine
 		else {
