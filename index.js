@@ -67,7 +67,7 @@ temp += '```', about = temp;
 bdd.connect(err => {
 	if(err) throw err;
 	console.log("Connected to DB");
-	bdd.query("SELECT * FROM usr", (err, result, fields) => {
+	bdd.query("SELECT usr.name FROM usr", (err, result, fields) => {
 		if(err) throw err;
 		console.log(result);
 	});
@@ -75,8 +75,13 @@ bdd.connect(err => {
 
 client
 	.on('ready', () => {
-		client.user.setStatus("online");
-		client.user.setActivity("conversation", { type: "WATCHING"});
+		client.user.setPresence({
+			game: {
+				name: "conversation",
+				type: "WATCHING"
+			},
+			status: "online"
+		});
 		console.log(`${conf.name.toUpperCase()} was connected to ${client.user.tag} !\n`);
 	})
 	.on('error', err => { console.log(err); })
