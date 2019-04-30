@@ -7,22 +7,29 @@
 const conf = require('./conf.json'),
       discord = require('discord.js'),
       client = new discord.Client(),
+			mysql = require('mysql'),
+			bdd = mysql.createConnection({
+				host: conf.db.host,
+				database: conf.db.name,
+				user: conf.db.user,
+				password: conf.db.pass
+			}),
       play = require('audio-play'),
       load = require('audio-loader'),
       dev = {
       	0: { name: 'Anarchy', func: 'développeur' },
       	1: { name: 'DOC', func: 'testeur' },
       	lastupt: '30/04/2019'
-      }
+      };
 
 function keyWord(msg) {
-	var word = require('./keyWord.json');
-	word.word.push(conf.name);
-	word.word.push(`${conf.name[0]}${conf.name[1]}${conf.name[2]}${conf.name[3]}`);
+	var key = require('./keyWord.json');
+	key.word.push(conf.name);
+	key.word.push(`${conf.name[0]}${conf.name[1]}${conf.name[2]}${conf.name[3]}`);
 	
-	for(var i = 0; i < word.word.length; i++) {
+	for(var i = 0; i < key.word.length; i++) {
 		var string = msg.content.toLowerCase();
-		if(string === word.word[i] || ((string.split(word.word[i]).length > 1) && (string.split('http').length < 2))) { return `${msg.author} : ${msg.content}`; }
+		if(string === key.word[i] || ((string.split(key.word[i]).length > 1) && (string.split('http').length < 2))) { return `${msg.author} : ${msg.content}`; }
 	}
 }
 
@@ -57,8 +64,21 @@ temp += '```', helper = temp, temp = '```';
 for(var i = 0; i < about.length; i++) { temp += `${about[i]}\n`; }
 temp += '```', about = temp;
 
+bdd.connect(err => {
+	if(err) throw err;
+	console.log("Connected to DB");
+	bdd.query("SELECT * FROM usr", (err, result, fields) => {
+		if(err) throw err;
+		console.log(result);
+	});
+});
+
 client
-	.on('ready', () => { console.log(`${conf.name.toUpperCase()} was connected to ${client.user.tag} !\n`); })
+	.on('ready', () => {
+		client.user.setStatus("online");
+		client.user.setActivity("conversation", { type: "WATCHING"});
+		console.log(`${conf.name.toUpperCase()} was connected to ${client.user.tag} !\n`);
+	})
 	.on('error', err => { console.log(err); })
 	.on('message', msg => {
 		var arg = msg.content.split(' '),
@@ -71,7 +91,9 @@ client
 				case '--ping': msg.channel.send(`:hourglass_flowing_sand: ${client.ping}ms`); break;
 				case '--date': msg.channel.send(`:date: ${time.toLocaleDateString()}`); break;
 				case '--time': msg.channel.send(`:clock: ${time.getHours()}h ${time.getMinutes()}m ${time.getSeconds()}s ${time.getMilliseconds()}ms`); break;
-				case 'patpat': msg.channel.send(`*${conf.name.toUpperCase()} is blushing.*`); break; // Réponse Perso
+				case 'patpat': client.user.setActivity("blushing", { type: "PLAYING"}); // Réponse Perso
+					msg.channel.send(`*${conf.name.toUpperCase()} is blushing.*`);
+					break;
 			}
 		}
 		else if(arg[0] === '!rp') { // Lancer de dé
@@ -81,7 +103,7 @@ client
 				if(i < x[0]-1) { z += '; '; }
 			} msg.channel.send('```'+`Liste: ${z}\n\nMoyenne: ${result/x[0]}\n\nTotal: ${result}`+'```');
 		}
-		else if(msg.content === `t!cookie ${conf.id}`) { msg.channel.send(`Merci ${msg.author} !`); } // Réponse Humaine
+		else if(msg.content === `t!cookie <@${client.user.id}>`) { msg.channel.send(`Merci ${msg.author} !`); } // Réponse Humaine
 		else {
 			console.log(`\nSERVER\t: ${msg.guild.id}\nUSER\t: ${msg.author}\nMSG\t: ${msg.content}`);
 			
