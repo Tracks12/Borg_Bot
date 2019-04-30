@@ -97,8 +97,7 @@ client
 				case '--date': msg.channel.send(`:date: ${time.toLocaleDateString()}`); break;
 				case '--time': msg.channel.send(`:clock: ${time.getHours()}h ${time.getMinutes()}m ${time.getSeconds()}s ${time.getMilliseconds()}ms`); break;
 				case 'patpat': client.user.setActivity("blushing", { type: "PLAYING"}); // Réponse Perso
-					msg.channel.send(`*${conf.name.toUpperCase()} is blushing.*`);
-					break;
+					msg.channel.send(`*${conf.name.toUpperCase()} is blushing.*`); break;
 			}
 		}
 		else if(arg[0] === '!rp') { // Lancer de dé
