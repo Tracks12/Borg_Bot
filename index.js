@@ -16,35 +16,13 @@ const conf = require('./conf.json'),
       }
 
 function keyWord(msg) {
-	const word = Array(
-		conf.name, "doc", "core", `${conf.name[0]}${conf.name[1]}${conf.name[2]}${conf.name[3]}`,
-		"handy", "iume2a",
-		"rose", "r0s3",
-		"borg corp", "borg", "burg",
-		"félicia", "jack", "andrew", "anya", "garry", "samia",
-		"science",
-		"espace", "temps",
-		"brèche", "faille", "vortex",
-		"tp", "téléporter", "téléportation",
-		"médic", "docteur",
-		"soin", "soins", "soigner",
-		"blessure", "blessé", "blessés",
-		"saigne", "saignes", "saignez", "saignent",
-		"corruption", "glitch",
-		"erreur", "erreurs", "error", "errors",
-		"monstre", "monstres", "chose", "choses",
-		"jet", "jets",
-		"roll", "rolls",
-		"micro onde", "micro ondes",
-		"lave", "volcan", "volcans", "volcanisme", "volcanique",
-		"cratère", "cratères",
-		"ennemi", "ennemie", "ennemis", "ennemies",
-		"effondrement", "effondrements"
-	);
+	var word = require('./keyWord.json');
+	word.word.push(conf.name);
+	word.word.push(`${conf.name[0]}${conf.name[1]}${conf.name[2]}${conf.name[3]}`);
 	
-	for(var i = 0; i < word.length; i++) {
+	for(var i = 0; i < word.word.length; i++) {
 		var string = msg.content.toLowerCase();
-		if(string === word[i] || ((string.split(word[i]).length > 1) && (string.split('http').length < 2))) { return `${msg.author} : ${msg.content}`; }
+		if(string === word.word[i] || ((string.split(word.word[i]).length > 1) && (string.split('http').length < 2))) { return `${msg.author} : ${msg.content}`; }
 	}
 }
 
