@@ -101,11 +101,19 @@ client
 			}
 		}
 		else if(arg[0] === '!rp') { // Lancer de dé
-			var x = arg[1].toLowerCase().split('d'), y, z = '', result = 0;
+			if(!arg[2]) { return false; }
+			
+			var x = arg[2].toLowerCase().split('d'), y = 0, z = '', moy = '', result = 0;
 			for(var i = 0; i < x[0]; i++) {
-				y = Math.floor(Math.random()*Math.floor(parseInt(x[1])+1)), result += y, z += `${y} `;
+				switch(arg[1]) {
+					case '-0': y = Math.floor(Math.random()*Math.floor(parseInt(x[1])+1)); break;
+					case '-!0': do { y = Math.floor(Math.random()*Math.floor(parseInt(x[1])+1)); } while(!y); break;
+				}
+				
+				result += y, z += `${y}`;
 				if(i < x[0]-1) { z += '; '; }
-			} msg.channel.send('```'+`Liste: ${z}\n\nMoyenne: ${result/x[0]}\n\nTotal: ${result}`+'```');
+				if(i > 0) { moy = `Liste: ${z}\n\nMoyenne: ${result/x[0]}`; }
+			} msg.channel.send('```'+`${moy}\n\nTotal: ${result}`+'```');
 		}
 		else if(msg.content === `t!cookie <@${client.user.id}>`) { msg.channel.send(`Merci ${msg.author} !`); } // Réponse Humaine
 		else {
