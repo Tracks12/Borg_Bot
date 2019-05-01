@@ -1,7 +1,7 @@
 ﻿/**
  * Author      : Anarchy & DOC
  * Name        : index.js
- * Last Update : 30/04/2019
+ * Last Update : 01/05/2019
  */
 
 const conf = require('./conf.json'),
@@ -19,7 +19,7 @@ const conf = require('./conf.json'),
       dev = {
       	0: { name: 'Anarchy', func: 'développeur' },
       	1: { name: 'DOC', func: 'testeur' },
-      	lastupt: '30/04/2019'
+      	lastupt: '01/05/2019'
       };
 
 function keyWord(msg) {
