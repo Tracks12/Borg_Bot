@@ -26,7 +26,7 @@
 	],
 	"action": {
 		"boop": ["booping", "louche et semble un peu confuse"],
-		"hug": ["hugging", "fait un calin à "],
+		"hug": ["hugging", "fait un calin a "],
 		"patpat": ["blushing", "is blushing"]
 	}
 }
